@@ -1,12 +1,9 @@
-import reactLogo from './assets/react.svg'
+import RYU from './Profile'
 
-function App() {
-  
+export default function App() {
   return (
     <>
-      <img className="button-icon" src={(reactLogo)} alt="" />
+      <RYU />
     </>
   )
 }
-
-export default App
