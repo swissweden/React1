@@ -28,10 +28,8 @@ export default function JsxExample() {
 
       <h1>{name}</h1>
 
-      {/* 3. 함수 호출 */}
       <p>결과: {getStatus(85)}</p>
 
-      {/* 4. 객체 적용 (style 속성 등) */}
       <div style={{ color: 'blue', fontSize: '20px' }}>
         Hello, React
       </div>
