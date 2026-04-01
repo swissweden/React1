@@ -47,5 +47,42 @@ export default function App() {
   )
 }
 ```
-파스칼 케이스
-카멜 케이스
+---
+## 04/01
+
+**파스칼 케이스 (PascalCase) :** 모든 단어의 첫 글자를 대문자로 작성 (React 컴포넌트 이름의 필수 규칙) <p/>
+**카멜 케이스 (camelCase) :** 첫 단어는 소문자, 이후 단어의 첫 글자만 대문자로 작성 (일반적인 변수나 함수 이름에 사용) <p/>
+**스네이크 케이스 (snakeCase) :** 모든 단어를 소문자로 쓰고 단어 사이를 언더바로 연결 (주로 API 필드명이나 파일명에 사용)
+---
+
+### JavaScript를 JSX에서 사용하는 방법
+
+**따옴표 문자열 :** HTML처럼 고정된 문자열 값을 전달할 때 사용 (중괄호 없이 따옴표만 사용) <p/>
+**변수 참조 :** 중괄호 { } 안에 변수명을 적어 이미 선언된 데이터 값을 화면에 출력 <p/>
+**함수 호출 :** 중괄호 안에서 함수를 실행하여 그 반환(return) 값을 화면에 렌더링 <p/>
+**객체 적용 :** 중괄호 안에 자바스크립트 객체 { }를 한 번 더 넣어 스타일이나 여러 속성을 한꺼번에 전달  
+ex) <div style={{ color: 'royalblue', fontSize: '20px' }}>
+
+> `중괄호 2개 {{ }}`의 의미 : 바깥쪽 { }는 JSX에서 자바스크립트를 쓰겠다는 신호이고, 안쪽 { }는 자바스크립트 객체 데이터 자체를 의미함
+```jsx
+export default function JsxExample() {
+  const name = "React";
+  const getStatus = (score) => score >= 80 ? "합격" : "불합격";
+
+  return (
+    <>
+      <img src="vite-project\public\icons.svg" alt="icon" />
+
+      <h1>{name}</h1>
+
+      {/* 3. 함수 호출 */}
+      <p>결과: {getStatus(85)}</p>
+
+      {/* 4. 객체 적용 (style 속성 등) */}
+      <div style={{ color: 'blue', fontSize: '20px' }}>
+        Hello, React
+      </div>
+    </>
+  );
+}
+```
