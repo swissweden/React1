@@ -1,12 +1,88 @@
 # React1
+## 04/15
 
+
+**비교 연산자 및 화살표 함수 :** 자바 ==와 ===의 차이 및 화살표 함수 문법 확인  
+**filter() 및 map()의 역할 :** filter는 조건에 맞는 객체 전체를 가져와 새로운 배열에 담고, map은 배열의 처음부터 끝까지 자동으로 순회하며 출력함  
+  
+```
+const filterTests = heroes.filter(hero =>
+    hero.name === "클라크 켄트"
+  ); // 필터 테스트로 클라크 켄트인 값을 저장
+```
+> 이름만 가져오는 것이 아니라 그 이름이 포함된 **객체 전체**를 가져와서 filterTests라는 새로운 배열에 담음
+
+ 
+```jsx
+const filterTests = heroes.filter(hero =>
+    hero.power === 5 // (5인 애들이 여럿인 상황)
+  );
+
+  const listHeroes = filterTests.map(hero => //map이라서 배열의 시작부터 끝까지 알아서 출력해줘서 여러 줄 뜸
+    <li>
+      <p>
+        {hero.name}의 배역은 {hero.casting} 이며 파워는 {hero.power} 입니다.
+      </p>
+    </li>
+  );
+```
+  
+이렇게 해도 출력은 되지만 고유 키값이 없어 경고가 나옴, 키값이 없으면 데이터가 어디서 온 지 모르기 때문  
+`<li key={hero.id}>` 이걸 사용하면 키값을 가지게 됨  
+  
+**Key Prop의 특징** : 고유 키값이 없으면 데이터의 출처를 파악하기 어려워 경고가 발생하며, 키값은 즉석 생성이 아닌 배열 안에 포함된 것을 사용해야 함 <p/>
+**프래그먼트 (Fragment)** : 빈 태그는 속성을 받을 수 없으므로, 하나로 묶으면서 key를 전달해야 하거나 루트 요소 반환 규칙을 지킬 때 사용함 <p/>
+**순수 함수 (Pure Function)** : 입력을 받았을 때 항상 같은 화면을 그려주어 코드가 복잡해도 예측이 쉽고 외부 변수 수정으로 인한 버그를 방지함 <p/>
+  
+**순수하지 않은 코드 예시**
+
+```jsx
+let guest = 0;
+
+function Cup() {
+  guest = guest + 1; // 외부 함수를 건드리고 있음  
+  return <h2>Tea cup for guest #{guest}</h2>;
+}
+
+export default function TeaSet() {
+  return (
+    <>
+      <Cup />
+      <Cup />
+      <Cup />
+    </>
+  );
+}
+```
+
+이러면 리액트에선 1,2,3으로 출력되지 않고 2,4,6으로 출력 되어버림 <p/>
+리액트 내에서 스스로 검사용으로 실행(출력은 x)해보는데 변수는 초기화 되지 않아서 1이 아닌 2씩 늘어난 것처럼 보이는 것 <p/>
+> `Strict Mode (엄격 모드)`를 끄면 되긴하지만 일부러 불순한 코드를 알기 위해서 대부분 키고 한다고 함
+  
+**순수해진 코드**
+```jsx
+function Cup({ guest }) { // guest를 props로 받도록 수정
+  return <h2>Tea cup for guest #{guest}</h2>;
+}
+
+export default function TeaSet() {
+  return (
+    <>
+      <Cup guest={1} /> // 외부 변수를 수정하지 않고 각각 고유한 값을 전달
+      <Cup guest={2} /> 
+      <Cup guest={3} /> 
+    </>
+  );
+}
+```
+
+  
+---
 ## 04/01
-v
+
 **파스칼 케이스 (PascalCase) :** 모든 단어의 첫 글자를 대문자로 작성 (React 컴포넌트 이름의 필수 규칙) <p/>
 **카멜 케이스 (camelCase) :** 첫 단어는 소문자, 이후 단어의 첫 글자만 대문자로 작성 (일반적인 변수나 함수 이름에 사용) <p/>
 **스네이크 케이스 (snakeCase) :** 모든 단어를 소문자로 쓰고 단어 사이를 언더바로 연결 (주로 API 필드명이나 파일명에 사용)
-
----
 
 ### JavaScript를 JSX에서 사용하는 방법
 
