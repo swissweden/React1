@@ -4,13 +4,58 @@
 >  프리뷰(웹) 전환 단축키 CRTL + SHIFT + P
 
 ## 04/29
-**렌더 트리** 
+**렌더 트리**   
+  
+컴포넌트의 주요 특징은 다른 컴포넌트의 컴포넌트를 구성하는 것  
+컴포넌트를 중첩하면 부모 컴포넌트와 자식 컴포넌트의 개념이 생기며   
+각 부모 컴포넌트는 다른 컴포넌트의 자식이 될 수 있다.  
+<img width="572" height="292" alt="image" src="https://github.com/user-attachments/assets/30784db0-b0bb-457e-92ac-6ebf113c9c70" />  
+> 부모이면서 자식이기도 한 **"InspirationGenerator"**
+---
+
+**렌더 트리와 묘듈 의존성 트리?**
+```jsx
+<InspirationGenerator>
+  <Copyright year={2023} />
+</InspirationGenerator>
+```
+이 코드를 트리 관점으로 본다면 Copyright가 InspirationGenerator의 자식으로 보인다.  
+  
+
+하지만 App 함수 안을 확인하여 묘듈 의존성 관섬으로 본다면 부모자식이 달라지게 됨
+
+```jsx
+import InspirationGenerator from './InspirationGenerator';
+import Copyright from './Copyright'; // <InspirationGenerator>이 아닌 App이 직접 파일을 불러옴
+```
+이렇기 때문에 묘듈 의존성 관점으로 보면 <Copyright>의 부모는 App이 되는 것 
+  
+  
+물론 InspirationGenerator 내부에서 Copyright를 직접 임포트하도록 수정할 수도 있다.  
+하지만 이 경우 App에서 관리하던 year 값에 대한 제어권을 잃게 된다.  _(\<InspirationGenerator /\> **X**, \<InspirationGenerator year={2026} /\> **O**)_   
+  
+또한 InspirationGenerator를 쓸 때마다 무조건 Copyright가 따라오게 되어 컴포넌트의 재사용성과 유연성이 떨어지게 된다  
+반면 지금처럼 컴포넌트 합성 방식을 유지하면 App에서 상황에 따라  
+Copyright 대신 다른 컴포넌트를 넣거나 내용을 비우는 등 훨씬 자유로운 설계가 가능해짐.  
+
+**CSS**
 
 
 
 
 
 
+
+
+
+
+
+
+
+> **jsx 문법 참고**  
+> ? 는 참일때 실행할 코드, : 는 거짓일 때 실행할 코드
+
+---
 
 
 
