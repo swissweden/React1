@@ -1,0 +1,17 @@
+.title {
+  color: slategrey
+}
+
+.navBar {
+    padding: 30px;
+    background-color: rgb(170, 243, 243);
+}
+
+.btn {
+  padding: 10px 40px;   
+  background-color: rgb(177, 195, 255);
+}
+
+.btn:hover {
+  background-color: rgb(166, 171, 252)
+}

@@ -39,7 +39,14 @@ import Copyright from './Copyright'; // <InspirationGenerator>이 아닌 App이 
 Copyright 대신 다른 컴포넌트를 넣거나 내용을 비우는 등 훨씬 자유로운 설계가 가능해짐.  
 
 **CSS**
+일반 css
+cssinjs
+css프레임워크
+css 모듈
 
+이벤트에 응답하기
+이벤트 핸들러
+이벤트 핸들러는 handle로 시작하고 이벤트명을 뒤에 붙이는 것이 관례
 
 
 
