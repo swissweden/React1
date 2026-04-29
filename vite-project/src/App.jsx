@@ -1,15 +1,9 @@
-import ParentComp from './components/ParentComp'
-import SpreadCom from "./components/SpreadCom";
-
-
-// import * as Test from './components/NamedComponent'
-
+import ButtonCom from "./components/ButtonCom"
 
 export default function App() {
   return (
     <>
-      <SpreadCom/>
-      <ParentComp /> 
+      <ButtonCom/>
     </>
   )
 }
