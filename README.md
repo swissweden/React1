@@ -3,6 +3,41 @@
 > [!NOTE]
 >  프리뷰(웹) 전환 단축키 CRTL + SHIFT + P
 
+## 05/06
+### 이벤트 핸들러에서 Prop 및 children 
+컴포넌트 내부에 선언된 이벤트 핸들러는 부모 컴포넌트로부터 전달받은 `props`에 접근하여 그 값을 활용할 수 있습니다. 
+또한, 컴포넌트의 여는 태그와 닫는 태그 사이의 내용은 `children`이라는 내부적으로 약속된 특수한 prop으로 전달되며, 이 매개변수 이름은 다른 이름으로 임의 변경하여 받을 수 없음  
+
+### 이벤트 핸들러를 Prop으로 전달 및 모듈화
+각각의 버튼이 2가지 이상의 다양한 기능을 수행해야 할 때, 하나의 컴포넌트 안에서 조건문으로 분기하거나 필요한 만큼 버튼 컴포넌트를 여러 개 만드는 방식은 유지보수와 재사용성 측면에서 문제가 있음  
+ 
+ **이벤트 핸들러 (`handle.jsx`)**: 실행될 로직(함수)들은 별도의 파일에 모듈 형태로 모아서 관리해줌.
+ **부모 컴포넌트 (`Toolbar`)**: Button 컴포넌트를 호출할 때, 미리 분리해 둔 이벤트 핸들러 함수를 Prop으로 함께 전달하여 연결해 준다.
+
+---
+
+### 동영상 재생정지 기능 컴포넌트 분리
+동영상 제어 로직을 별도 모듈로 분리하고, 공통 버튼 컴포넌트에 Prop으로 전달하여 동작하게 함
+
+#### `src/components/handle.jsx` (이벤트 핸들러 모듈)  
+```jsx
+// 비디오 재생
+export const handlePlay = ({ message }) => {
+    const video = document.getElementById(message);
+    if (video) {
+        video.play();
+    }
+};
+
+// 비디오 정지
+export const handleStop = ({ message }) => {
+    const video = document.getElementById(message);
+    if (video) {
+        video.pause();
+    }
+};
+```
+
 ## 04/29
 **렌더 트리**   
   
