@@ -7,6 +7,51 @@
 
 ## 05/13
 
+### 이벤트 버블링
+자식 요소에서 발생한 이벤트가 부모 요소로 전달되는 현상을 **이벤트 버블링**이라고 함.  
+의도치 않은 부모 요소의 핸들러 실행을 막기 위해 `e.stopPropagation()` 메서드를 사용하여,   
+이벤트가 상위 DOM 트리로 전파되는 것을 즉시 중단시킬 수 있다.  
+주로 중첩된 버튼이나 메뉴 구조에서 각 요소의 클릭 이벤트를 독립적으로 처리할 때 유용하다.  
+전파를 제어함으로써 UI의 각 부분이 서로 간섭 없이 의도한 대로 동작하게 할 수 있음
+```jsx
+import style from "./Bubble.module.css"
+
+function Button({ onClick, children }) {
+  return (
+    <button className={style.button} onClick={e => {
+      e.stopPropagation(); // 이거 빼면 버튼 누를때 내비도 같이 온클릭됨
+      onClick();
+    }}>
+      {children}
+    </button>
+  );
+}
+
+export default function Bubble() {
+  return (
+    <>
+      <h1 className={style.title}>Bubble</h1>
+      <nav className={style.navBar} onClick={() => alert("네비게이션바 클릭!")}>
+        <Button onClick={() => alert("버튼1 클릭!")}>
+          버튼1
+        </Button>
+        <Button onClick={() => alert("버튼2 클릭!")}>
+          버튼2
+        </Button>
+      </nav>
+    </>
+  );
+}
+```
+<img width="1192" height="136" alt="image" src="https://github.com/user-attachments/assets/1edcd8f3-289b-4a4b-bbb3-1606bee86c16" />
+  
+_출력 사진_  
+  
+**e.stopPropagation() 함수가 없다면 버튼만 눌러도 nav 온클릭까지 같이 알러트 된다!**
+
+
+
+### 비디오 태그
 HTML의 \<video>태그는 보통 \<video>...\</video>의 형태로 사용했으나,  
 앞쪽 태그 안의 속성 만으로 충분한 설정이 가능한 경우에는 싱글 태그로 사용할 수 있음    
 실습에서는 JSX를 사용하기 때문에 뒤의 \</video> 태그를 생략하고, \<video /> 형태의 싱글 태그로 사용되었음  
