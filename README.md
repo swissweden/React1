@@ -6,6 +6,43 @@
 
 ## 05/20
 
+### 일반 변수 대신 상태(State)를 사용해야 하는 이유
+
+```jsx
+import { galleryImages } from "./imgData.jsx";
+
+export default function Carousel() {
+  let index = 0;
+
+  function handleClick() {
+    index = index + 1;
+    console.log(index);
+  }
+
+  let slide = galleryImages[index];
+  return (
+    <>
+      <button onClick={handleClick}>Next</button>
+      <h2>
+        <i>{slide.name} </i>
+        by {slide.artist}
+      </h2>
+      <h3>
+        ({index + 1} of {galleryImages.length})
+      </h3>
+      <img src={slide.url} alt={slide.alt} />
+      <p>{slide.description}</p>
+    </>
+  );
+}
+```
+이 코드에서는 let index = 0;이라는 일반 변수를 사용하여 버튼을 클릭시  
+index 값 자체는 증가하지만 _(개발자 도구 콘솔에서 확인 가능)_  
+React는 일반 변수의 변경을 감지하지 못하므로 화면을 다시 그리지 않기 때문에 화면에는 아무런 변화가 없다.  
+  
+렌더링이 완료된 후 값을 변경하여 화면에 반영하려면 React의 상태 관리 기능인 state를 사용하라는 오류 메세지도 발생함
+
+
 중간고사 리뷰
 
 
