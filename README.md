@@ -42,6 +42,40 @@ React는 일반 변수의 변경을 감지하지 못하므로 화면을 다시 �
   
 렌더링이 완료된 후 값을 변경하여 화면에 반영하려면 React의 상태 관리 기능인 state를 사용하라는 오류 메세지도 발생함
 
+> 리액트에서 렌더링이란 단순히 화면에 출력하는 행위가 아니라  
+> **현재의 상태와 데이터를 바탕으로 컴포넌트 함수를 실행해 화면에 그려질 UI의 구조를 새롭게 계산하는 과정을 의미함**  
+> (편의상 렌더링을 출력하는거로 말하는 것 뿐)
+
+수정된 코드
+```jsx
+import { galleryImages } from "./imgData.jsx";
+import { useState } from "react"; 
+
+export default function Carousel() {
+  const [index, setIndex] = useState(0); // useState를 사용하여 상태 관리
+
+  function handleClick() {
+    setIndex(index + 1); 
+    console.log(index);
+  }
+
+  let slide = galleryImages[index];
+  return (
+    <>
+      <button onClick={handleClick}>Next</button>
+      <h2>
+        <i>{slide.name} </i>
+        by {slide.artist}
+      </h2>
+      <h3>
+        ({index + 1} of {galleryImages.length})
+      </h3>
+      <img src={slide.url} alt={slide.alt} />
+      <p>{slide.description}</p>
+    </>
+  );
+}
+```
 
 중간고사 리뷰
 
