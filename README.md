@@ -63,7 +63,7 @@ _출력 사진_
 HTML의 \<video>태그는 보통 \<video>...\</video>의 형태로 사용했으나,  
 앞쪽 태그 안의 속성 만으로 충분한 설정이 가능한 경우에는 싱글 태그로 사용할 수 있음    
 실습에서는 JSX를 사용하기 때문에 뒤의 \</video> 태그를 생략하고, \<video /> 형태의 싱글 태그로 사용되었음  
-그러나 <source>, <track>, 대체 텍스트 등을 사용해야 하는 경우는 \<video>...\</video>의 형태로 사용할 수도 있다.    
+그러나 \<source\>, \<track\>, 대체 텍스트 등을 사용해야 하는 경우는 \<video>...\</video>의 형태로 사용할 수도 있다.    
 ```jsx
 <section>
    <video id="videoPlayer" src={sampleVideo} controls width="350" /> // 단일의 경우
