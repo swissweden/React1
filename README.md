@@ -4,6 +4,65 @@
 > [!NOTE]
 >  프리뷰(웹) 전환 단축키 CRTL + SHIFT + P
 
+## 05/27
+
+### 여러개의 State
+
+필드가 많은 폼의 경우 필드별로 state 변수를 사용하는 것보다 하나의 객체 state 변수를 사용하는 것이 더 편리하다.  
+그러나 예시처럼 index와 more가 서로 연관이 없는 경우 state 변수를 나누는 것이 좋다.  
+```jsx
+export default function Carousel() {
+  const [index, setIndex] = useState(0);
+  const [more, setMore] = useState(false);
+  ...
+}
+```
+여러개의 State를 사용한 코드 예시
+
+```jsx
+import { galleryImages } from "./imgData.jsx";
+import { useState } from "react";
+
+export default function Carousel() {
+  const [index, setIndex] = useState(0);
+  const [more, setMore] = useState(false);
+
+  function handleClick() {
+
+    if (index < galleryImages.length - 1) {
+      setIndex(index + 1);
+    } else {
+      setIndex(0);
+    }
+  }
+
+  function handleMoreClick() { // 불린 값 반전
+    setMore(!more);
+  }
+
+  let slide = galleryImages[index];
+  return (
+    <>
+      <button onClick={handleClick}>Next</button>
+      <h2>
+        <i>{slide.name} </i>
+        by {slide.artist}
+      </h2>
+      <h3>
+        ({index + 1} of {galleryImages.length})
+      </h3>
+      <button onClick={handleMoreClick}>
+        {more ? 'Hide description' : 'Show description'}
+      </button>
+      <img src={slide.url} alt={slide.alt} />
+      {more ? <p>{slide.description}</p> : null}
+    </>
+  );
+}
+```
+
+
+
 ## 05/20
 
 ### 일반 변수 대신 상태(State)를 사용해야 하는 이유
