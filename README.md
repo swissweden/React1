@@ -10,14 +10,8 @@
 
 필드가 많은 폼의 경우 필드별로 state 변수를 사용하는 것보다 하나의 객체 state 변수를 사용하는 것이 더 편리하다.  
 그러나 예시처럼 index와 more가 서로 연관이 없는 경우 state 변수를 나누는 것이 좋다.  
-```jsx
-export default function Carousel() {
-  const [index, setIndex] = useState(0);
-  const [more, setMore] = useState(false);
-  ...
-}
-```
-여러개의 State를 사용한 코드 예시
+  
+**여러개의 State를 사용한 코드 예시**
 
 ```jsx
 import { galleryImages } from "./imgData.jsx";
