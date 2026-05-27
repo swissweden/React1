@@ -30,30 +30,57 @@ export default function Carousel() {
     }
   }
 
-  function handleMoreClick() { // 불린 값 반전
+  function handleMoreClick() { // 불린 값 전환
     setMore(!more);
   }
 
   let slide = galleryImages[index];
   return (
     <>
-      <button onClick={handleClick}>Next</button>
+      
       <h2>
         <i>{slide.name} </i>
         by {slide.artist}
       </h2>
       <h3>
         ({index + 1} of {galleryImages.length})
-      </h3>
+      </h3>  
+      <img src={slide.url} alt={slide.alt} />
+      {more ? <p>{slide.description}</p> : null}
+      <div>
+      <button onClick={handleClick}>Next</button>
       <button onClick={handleMoreClick}>
         {more ? 'Hide description' : 'Show description'}
       </button>
-      <img src={slide.url} alt={slide.alt} />
-      {more ? <p>{slide.description}</p> : null}
+      </div>
     </>
   );
 }
 ```
+### 렌더링의 과정
+
+React는 컴포넌트가 화면에 표시되기 전에 렌더링 과정을 거치게 된다.  
+React의 렌더링 프로세스는 **렌더링 트리거, 컴포넌트 렌더링, DOM에 커밋** 등 3단계로 진행됨  
+
+앱을 시작할 때는 초기 렌더링을 촉발시켜야 합니다. 이 과정을 **렌더링 트리거**라고 한다  
+대상 DOM 노드와 함께 createRoot를 호출한 다음 해당 컴포넌트로 render 메서드를 호출하면 이 작업이 완료된다.  
+
+**State가 업데이트된 경우**  
+컴포넌트가 초기 렌더링 된 후에는 set 함수를 통해 state를 업데이트해서, 추가적인 렌더링을 촉발시킬 수 있다.  
+컴포넌트의 state를 업데이트하면 자동으로 렌더링 queue에 추가되고, 순서대로 렌더링함.  
+이 프로세스는 재귀적(Recursive)으로 발생
+
+**React가 DOM에 변경사항을 커밋**  
+React는 컴포넌트를 렌더링한 후에 DOM을 수정함.  
+초기 렌더링의 경우는 appendChild() DOM API를 사용해서, 생성한 모든 DOM 노드를 화면에 표시한다.  
+리렌더링의 경우는 최신 렌더링의 출력과 일치하도록 DOM을 변경하기 위해 필요한 최소한의 작업을 적용한다.  
+  
+**StrictMode 컴포넌트**  
+StrictMode 컴포넌트는 개발 모드에서 애플리케이션의 잠재적인 버그와 부작용을 조기에 발견할 수 있도록 돕는 검사 도구임.  
+배포 환경에서는 전혀 영향을 주지 않는 안전장치임  
+> 이중 렌더링 검사  
+> Effect 및 Ref 클린업 테스트  
+> 지원 중단된 API 경고 등등.. 
 
 
 
