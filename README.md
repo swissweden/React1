@@ -1,4 +1,5 @@
 코드 예상
+```jsx
 
 import { useState } from 'react'; // Hook은 반드시 최상위에서 임포트 [3]
 
@@ -71,3 +72,4 @@ export default function App() {
     </div>
   );
 }
+```
