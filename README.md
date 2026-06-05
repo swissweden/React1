@@ -7,6 +7,18 @@
 
 ## 06/05
 
+## 깃 배포?
+
+깃 연동 후 터미널에 'npm i gh-pages' 입력  
+package.json 에 
+"homepage" : "https://swissweden.github.io" // 맨 위
+
+"predeploy": "npm run build" // 스크립트에
+"deploy": "gh-pages -d dist"
+
+---
+
+
 ### 시간 경과에 따른 State와 클로저  
 
 React에서 상태 업데이트는 비동기적으로 처리되며, 하나의 렌더링 내에서 상태는 스냅샷처럼 고정되어 동작함  
