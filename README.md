@@ -10,13 +10,13 @@ export default function App() {
   //  단일 값 State 
   const [count, setCount] = useState(0);
 
-  // 객체 State (폼 데이터나 여러 값을 하나로 묶을 때 사용) [1]
+  // 객체 State (폼 데이터나 여러 값을 하나로 묶을 때 사용) 
   const [dataObj, setDataObj] = useState({
     field1: "초기값",
     field2: 0,
   });
 
-  //  배열 State (map, filter를 이용한 리스트 렌더링용) [2]
+  //  배열 State (map, filter를 이용한 리스트 렌더링용) 
   const [listData, setListData] = useState([
     { id: 1, text: "항목1", power: 100 },
     { id: 2, text: "항목2", power: 90 }
@@ -24,16 +24,16 @@ export default function App() {
 
 
   // ==========================================
-  // 2. [이벤트 핸들러 함수 공간] - 이름은 handle~ 로 시작 [2]
+  // 2. [이벤트 핸들러 함수 공간] - 이름은 handle~ 로 시작 
   // ==========================================
 
   // (1) 일반 버튼 클릭 핸들러 (버블링 제어 포함) [3]
   const handleAction = (e) => {
-    e.stopPropagation(); // 부모 태그로 클릭 이벤트가 전파되는 것 방지 [3]
-    setCount(count + 1); // 상태 업데이트
+    e.stopPropagation(); 
+    setCount(count + 1); 
   };
 
-  // (2) 입력창(Input) 변경 시 객체 State 업데이트 핸들러
+  // (2) 입력창 변경 시 객체 State 업데이트 핸들러
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDataObj({
@@ -42,7 +42,7 @@ export default function App() {
     });
   };
 
-  // (3) 리스트(배열) 상태 업데이트 핸들러 (특정 항목 삭제 등) [2]
+  // (3) 리스트 상태 업데이트 핸들러 (특정 항목 삭제 등) 
   const handleItemDelete = (targetId) => {
     // targetId와 다른 것만 남겨서 새로운 배열 생성
     const newList = listData.filter(item => item.id !== targetId);
@@ -51,7 +51,7 @@ export default function App() {
 
 
   // ==========================================
-  // 3. [화면 렌더링(Return) 공간] - JSX 문법 주의
+  // 3. [화면 렌더링(Return) 공간]
   // ==========================================
   return (
     // 최상위 태그는 하나로 묶어야 함 (div 또는 프래그먼트 <>) [5]
@@ -61,7 +61,6 @@ export default function App() {
       <p>현재 카운트: {count}</p>
       <p>객체 값 확인: {dataObj.field1}</p>
 
-      {/* 이벤트 전달은 괄호() 없이 이름만! */}
       <button onClick={handleAction}>기본 동작 버튼</button>
 
       {/* 하위 컴포넌트로 Props 전달 예시 (주석 해제 후 사용) */}
@@ -69,7 +68,7 @@ export default function App() {
 
       <hr />
 
-      {/* 배열 map 렌더링 예시 (고유 key값 필수!) [5] */}
+      {/* 배열 map 렌더링 예시 */}
       <h3>리스트 출력 영역</h3>
       <ul>
         {listData.map((item) => (
@@ -87,7 +86,7 @@ export default function App() {
 
 ```jsx
 
-import { useState } from 'react'; // Hook은 반드시 최상위에서 임포트 [3]
+import { useState } from 'react'; 
 
 export default function App() {
   // 1. State 선언: 두 숫자와 결과값을 관리 [3, 4]
@@ -108,7 +107,7 @@ export default function App() {
   };
 
   // 3. 사칙연산 이벤트 핸들러 [5]
-  // 순수 함수일 필요 없이, State 변경 등의 부수 효과(Side Effect)를 수행하기 좋은 위치입니다 [8].
+  // 순수 함수일 필요 없이, State 변경 등의 부수 효과(Side Effect)를 수행하기 좋은 위치입니다 
   const handleCalculate = (operator) => {
     let calculatedResult = 0;
     if (operator === '+') calculatedResult = calcData.num1 + calcData.num2;
