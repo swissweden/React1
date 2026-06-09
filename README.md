@@ -6,20 +6,17 @@ import { useState } from 'react';
 // import ChildCom from './ChildCom';
 
 export default function App() {
-  // ==========================================
-  // 1. [상태(State) 선언 공간] - 안 쓰는 건 지우세요.
-  // ==========================================
 
-  // (1) 단일 값 State (가장 기본)
+  //  단일 값 State 
   const [count, setCount] = useState(0);
 
-  // (2) 객체 State (폼 데이터나 여러 값을 하나로 묶을 때 사용) [1]
+  // 객체 State (폼 데이터나 여러 값을 하나로 묶을 때 사용) [1]
   const [dataObj, setDataObj] = useState({
     field1: "초기값",
     field2: 0,
   });
 
-  // (3) 배열 State (map, filter를 이용한 리스트 렌더링용) [2]
+  //  배열 State (map, filter를 이용한 리스트 렌더링용) [2]
   const [listData, setListData] = useState([
     { id: 1, text: "항목1", power: 100 },
     { id: 2, text: "항목2", power: 90 }
